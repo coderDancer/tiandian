@@ -670,7 +670,14 @@
 
   <footer class="footer">
     <div class="container">
-      © <span id="year"></span> 江苏添点建设工程有限公司 · 主理设计师与创始人：王夏云
+      <div>© <span id="year"></span> 江苏添点建设工程有限公司 · 主理设计师与创始人：王夏云</div>
+      <div style="margin-top:8px;font-size:12px;color:#8fa0bc;line-height:1.8;">
+        <span id="busuanzi_container_site_pv" style="display:none;">总访问量 <span id="busuanzi_value_site_pv"></span></span>
+        <span style="margin:0 8px;opacity:.5;">|</span>
+        <span id="busuanzi_container_site_uv" style="display:none;">访客数 <span id="busuanzi_value_site_uv"></span></span>
+        <span style="margin:0 8px;opacity:.5;">|</span>
+        <span>本次来源：<span id="visitSource">直接访问</span></span>
+      </div>
     </div>
   </footer>
 
@@ -679,8 +686,19 @@
     <a class="wechat" href="#contact">💬 咨询方案</a>
   </div>
 
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    const ref = document.referrer || '';
+    let source = '直接访问';
+    if (ref) {
+      if (/baidu\.com|google\.|bing\.com|so\.com|sogou\.com|sm\.cn/i.test(ref)) source = '搜索引擎';
+      else if (/douyin\.com|xiaohongshu\.com|weixin\.qq\.com|weibo\.com|zhihu\.com/i.test(ref)) source = '社交平台';
+      else source = '外部网站';
+    }
+    const sourceEl = document.getElementById('visitSource');
+    if (sourceEl) sourceEl.textContent = source;
 
     const io = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
