@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>江苏添点工程建设有限公司｜移动端家装服务页</title>
+  <meta name="description" content="江苏添点工程建设有限公司，专注个人家装服务：全屋装修设计、全屋施工落地。主理设计师与创始人：王夏云。" />
+  <style>
+    :root {
+      --bg: #0c0f14;
+      --panel: #131923;
+      --line: #2a3445;
+      --text: #e9eef7;
+      --muted: #9eacc4;
+      --brand: #d8b47c;
+      --brand-2: #8fb7ff;
+      --ok: #5fd39d;
+      --max: 1180px;
+      --radius: 16px;
+      --shadow: 0 16px 40px rgba(0,0,0,.35);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: "PingFang SC", "Segoe UI", sans-serif; scroll-behavior:smooth; }
+    body{ scroll-snap-type: y proximity; }
+    a { color: inherit; text-decoration: none; }
+
+    .container { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 18px; }
+
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(8px);
+      background: rgba(12,15,20,.68);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav-inner {
+      height: 66px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { font-weight: 700; letter-spacing: .5px; }
+    .logo small { color: var(--muted); font-weight: 500; margin-left: 8px; font-size: 12px; }
+    .nav-links { display: flex; gap: 18px; color: var(--muted); font-size: 14px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 10px 16px; border-radius: 999px; border: 1px solid transparent;
+      font-size: 14px; cursor: pointer; transition: .2s;
+    }
+    .btn-primary { background: linear-gradient(135deg, var(--brand), #f0d5aa); color: #1a1a1a; font-weight: 700; }
+    .btn-ghost { border-color: rgba(255,255,255,.18); color: var(--text); }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      padding: 92px 0 72px;
+      background:
+        radial-gradient(1000px 380px at 12% -10%, rgba(143,183,255,.30), transparent 58%),
+        radial-gradient(760px 300px at 90% 0%, rgba(216,180,124,.30), transparent 62%),
+        linear-gradient(180deg, #0c0f14 0%, #0e1320 100%);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .hero-slides{ position:absolute; inset:0; }
+    .hero-slide{
+      position:absolute; inset:0; opacity:0; transition:opacity 1.2s ease;
+      background-size:cover; background-position:center;
+      transform:scale(1.05);
+    }
+    .hero-slide.on{ opacity:1; }
+    .hero-slide.s1{ background-image:linear-gradient(120deg, rgba(15,23,42,.65), rgba(15,23,42,.72)), url('https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=2000&auto=format&fit=crop'); }
+    .hero-slide.s2{ background-image:linear-gradient(120deg, rgba(15,23,42,.65), rgba(15,23,42,.72)), url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2000&auto=format&fit=crop'); }
+    .hero-slide.s3{ background-image:linear-gradient(120deg, rgba(15,23,42,.65), rgba(15,23,42,.72)), url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb3?q=80&w=2000&auto=format&fit=crop'); }
+    .hero-overlay{
+      position:absolute; inset:0; background:linear-gradient(180deg, rgba(8,11,16,.35), rgba(8,11,16,.7));
+      pointer-events:none;
+    }
+    .hero-pager{ position:absolute; left:50%; bottom:26px; transform:translateX(-50%); display:flex; gap:8px; z-index:3; }
+    .hero-pager button{ width:26px;height:4px;border:none;border-radius:999px;background:rgba(255,255,255,.35);padding:0;cursor:pointer }
+    .hero-pager button.on{ background:var(--brand); }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      filter: blur(48px);
+      opacity: .4;
+      pointer-events: none;
+      animation: floatGlow 9s ease-in-out infinite;
+    }
+    .hero::before { background: #6ca8ff; left: -90px; top: -90px; }
+    .hero::after { background: #e2b676; right: -100px; top: -120px; animation-delay: -3s; }
+    .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 22px; align-items: stretch; }
+    .hero-banner {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, rgba(255,255,255,.03), transparent 30%, transparent 70%, rgba(255,255,255,.02));
+      mask-image: radial-gradient(circle at center, black 20%, transparent 85%);
+    }
+    .headline {
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+    .headline::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.08) 40%, transparent 75%);
+      transform: translateX(-120%);
+      animation: shine 6s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .tag { display: inline-block; font-size: 12px; color: #111; background: var(--ok); border-radius: 999px; padding: 4px 10px; margin-bottom: 12px; }
+    h1 {
+      margin: 0;
+      font-size: 56px;
+      line-height: 1.12;
+      letter-spacing: .6px;
+      background: linear-gradient(120deg, #f5f7fb 0%, #dbe7ff 45%, #f2cf97 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 24px rgba(255,255,255,.16);
+    }
+    .sub { margin-top: 14px; color: var(--muted); line-height: 1.75; }
+    .hero-actions { margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap; }
+
+    .hero-card {
+      background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 22px; display: flex; flex-direction: column; gap: 14px;
+    }
+    .kpi { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; }
+    .kpi .item { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 12px; }
+    .kpi .n { font-size: 22px; font-weight: 700; color: var(--brand); }
+    .kpi .t { color: var(--muted); font-size: 12px; }
+
+    section { padding: 72px 0; }
+    .screen{ min-height:100vh; scroll-snap-align:start; display:flex; align-items:center; }
+    .screen > .container{ width:100%; }
+    .screen .reveal{ transition: opacity .8s ease, transform .8s ease; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px) scale(.99);
+      transition: opacity .7s ease, transform .7s ease;
+      will-change: transform, opacity;
+    }
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    .sec-title { font-size: 28px; margin: 0; }
+    .sec-sub { color: var(--muted); margin-top: 10px; line-height: 1.8; }
+
+    .services {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-top: 20px;
+    }
+    .card {
+      background: linear-gradient(180deg, rgba(19,25,35,.95), rgba(19,25,35,.72));
+      border: 1px solid var(--line); border-radius: 14px; padding: 18px;
+      transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+      position: relative; overflow: hidden;
+    }
+    .card::before{
+      content:""; position:absolute; inset:0;
+      background: radial-gradient(240px 80px at 10% 0%, rgba(143,183,255,.15), transparent 70%);
+      pointer-events:none;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(216,180,124,.68);
+      box-shadow: 0 12px 28px rgba(0,0,0,.35), 0 0 0 1px rgba(216,180,124,.15) inset;
+    }
+    .card h3 { margin: 0 0 10px; font-size: 18px; }
+    .card p { margin: 0; color: var(--muted); line-height: 1.75; }
+
+    .process {
+      margin-top: 18px; display: grid; grid-template-columns: repeat(5,1fr); gap: 10px;
+    }
+    .step {
+      background: rgba(255,255,255,.02); border: 1px dashed rgba(255,255,255,.2);
+      border-radius: 12px; padding: 14px;
+    }
+    .step b { display: block; color: var(--brand-2); margin-bottom: 6px; font-size: 13px; }
+    .step span { color: var(--muted); font-size: 13px; line-height: 1.65; }
+
+    .founder {
+      display: grid; grid-template-columns: .8fr 1.2fr; gap: 14px; margin-top: 22px;
+    }
+    .portrait {
+      background: linear-gradient(160deg, rgba(216,180,124,.18), rgba(143,183,255,.15));
+      border: 1px solid rgba(255,255,255,.14); border-radius: 14px; padding: 22px;
+      display: flex; align-items: center; justify-content: center; min-height: 260px;
+    }
+    .portrait .name {
+      text-align: center;
+    }
+    .portrait .name h3 { margin: 0; font-size: 28px; }
+    .portrait .name p { margin-top: 10px; color: var(--muted); }
+
+    .bio {
+      background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 22px;
+    }
+    .bio p { color: var(--muted); line-height: 1.85; margin: 0 0 10px; }
+
+    .works {
+      margin-top: 18px; display: grid; grid-template-columns: repeat(4,1fr); gap: 10px;
+    }
+    .work {
+      border-radius: 12px; border: 1px solid rgba(255,255,255,.16);
+      min-height: 130px; padding: 14px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.015));
+      position: relative; overflow: hidden;
+      transition: transform .2s ease, border-color .2s ease;
+    }
+    .work:hover{ transform: translateY(-4px); border-color: rgba(143,183,255,.7); }
+    .work::after{
+      content:""; position:absolute; inset:auto -40% -40% auto; width:150px; height:150px;
+      background: radial-gradient(circle, rgba(143,183,255,.2) 0%, transparent 70%);
+      pointer-events:none;
+    }
+    .work b { color: var(--brand); font-size: 14px; }
+    .work p { margin: 8px 0 0; color: var(--muted); font-size: 13px; line-height: 1.65; }
+
+    .showcase{ margin-top:20px; background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015)); border:1px solid rgba(255,255,255,.14); border-radius:14px; padding:16px; }
+    .show-head{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px; }
+    .show-head h3{ margin:0; font-size:20px; }
+    .carousel{ position:relative; min-height:138px; }
+    .slide{ display:none; border:1px solid rgba(255,255,255,.12); border-radius:12px; padding:14px; background:rgba(12,18,29,.75); }
+    .slide.active{ display:block; animation:fadeIn .5s ease; }
+    .slide h4{ margin:0 0 8px; color:var(--brand); font-size:16px; }
+    .slide p{ margin:0; color:var(--muted); line-height:1.8; }
+    .dots{ display:flex; gap:6px; }
+    .dots button{ width:9px; height:9px; border-radius:999px; border:none; padding:0; background:#4b5f82; cursor:pointer; }
+    .dots button.on{ background:var(--brand); box-shadow:0 0 10px rgba(216,180,124,.6); }
+
+    .testimonials{ margin-top:16px; }
+    .testimonials h3{ margin:0 0 10px; font-size:20px; }
+    .t-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+    .t-grid blockquote{ margin:0; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.12); border-radius:12px; padding:14px; color:#d9e2f2; line-height:1.8; }
+    .t-grid small{ display:block; margin-top:8px; color:var(--muted); }
+
+    .cta {
+      margin-top: 26px;
+      background: linear-gradient(140deg, rgba(216,180,124,.16), rgba(143,183,255,.16));
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 16px; padding: 22px;
+      display: grid; grid-template-columns: 1.2fr .8fr; gap: 14px; align-items: center;
+    }
+    .cta h3 { margin: 0 0 10px; font-size: 22px; }
+    .cta p { margin: 0; color: #d7deea; line-height: 1.8; }
+    .contact-box {
+      background: rgba(10,14,22,.55); border: 1px solid rgba(255,255,255,.14); border-radius: 12px; padding: 14px;
+    }
+    .contact-row { display: flex; justify-content: space-between; gap: 8px; padding: 8px 0; border-bottom: 1px dashed rgba(255,255,255,.12); }
+    .contact-row:last-child { border-bottom: none; }
+    .contact-row span { color: var(--muted); font-size: 13px; }
+    .contact-row b { font-size: 14px; }
+
+    .footer {
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding: 20px 0 34px; color: var(--muted); font-size: 13px;
+    }
+
+    .float-cta {
+      position: fixed; right: 16px; bottom: 16px; z-index: 60;
+      display: flex; flex-direction: column; gap: 8px;
+      animation: floatY 3.4s ease-in-out infinite;
+    }
+    .float-cta a {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: 126px; padding: 11px 12px; border-radius: 10px; font-size: 13px;
+      box-shadow: var(--shadow);
+    }
+    .tel { background: linear-gradient(135deg, #f0d5aa, #d8b47c); color: #191919; font-weight: 700; }
+    .wechat { background: #1f9f62; color: #fff; }
+
+    @keyframes shine { 0%,100%{ transform: translateX(-120%);} 55%{ transform: translateX(120%);} }
+    @keyframes floatGlow { 0%,100%{ transform: translateY(0px) scale(1);} 50%{ transform: translateY(12px) scale(1.05);} }
+    @keyframes floatY { 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(-6px);} }
+    @keyframes fadeIn { from {opacity:0; transform:translateY(8px);} to {opacity:1; transform:translateY(0);} }
+
+    @media (max-width: 980px) {
+      .hero-grid, .founder, .cta { grid-template-columns: 1fr; }
+      .services { grid-template-columns: 1fr; }
+      .process { grid-template-columns: 1fr 1fr; }
+      .works { grid-template-columns: 1fr 1fr; }
+      .t-grid{ grid-template-columns:1fr; }
+      h1 { font-size: 34px; }
+      .nav-links { display: none; }
+    }
+
+    @media (max-width: 560px) {
+      .process, .works { grid-template-columns: 1fr; }
+      .headline, .hero-card, .bio, .cta { padding: 16px; }
+      h1 { font-size: 26px; }
+    }
+    /* 移动端增强（专版） */
+    @media (max-width: 768px) {
+      body{ scroll-snap-type: none; padding-bottom: calc(84px + env(safe-area-inset-bottom)); }
+      .container{ padding: 0 14px; }
+      .nav{ padding-top: env(safe-area-inset-top); }
+      .nav-inner{ height:56px; }
+      .logo{ font-size:13px; line-height:1.3; max-width:68%; }
+      .nav .btn{ padding:8px 12px; font-size:12px; }
+
+      .hero{ min-height: calc(100svh - 8px); padding:72px 0 22px; }
+      .hero-pager{ bottom: 12px; }
+      h1{ font-size:30px !important; line-height:1.18; }
+      .sub{ font-size:14px; line-height:1.72; }
+      .hero-grid{ gap:10px; }
+      .headline{ padding:16px; }
+      .hero-card{ padding:14px; }
+      .kpi{ grid-template-columns:1fr 1fr; }
+
+      section{ padding:34px 0; }
+      .screen{ min-height:auto; align-items:flex-start; }
+      .sec-title{ font-size:24px; }
+      .sec-sub{ font-size:14px; line-height:1.72; }
+      .process{ grid-template-columns:1fr; }
+      .services,.works,.t-grid{ grid-template-columns:1fr; }
+      .cta{ grid-template-columns:1fr; padding:16px; }
+      .footer{ padding-bottom: calc(16px + env(safe-area-inset-bottom)); }
+
+      .float-cta{
+        right:10px;
+        left:10px;
+        bottom: calc(10px + env(safe-area-inset-bottom));
+        flex-direction:row;
+        animation:none;
+      }
+      .float-cta a{ flex:1; min-width:0; padding:10px 8px; font-size:12px; }
+
+      .hero::before,.hero::after,.card::after,.headline::after{ animation:none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <div class="logo">江苏添点工程建设有限公司 <small>Residential Studio</small></div>
+      <nav class="nav-links">
+        <a href="#services">服务</a>
+        <a href="#founder">主理人</a>
+        <a href="#works">风格案例</a>
+        <a href="#contact">联系咨询</a>
+      </nav>
+      <a class="btn btn-primary" href="tel:13773168019">立即咨询</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero screen">
+      <div class="hero-slides">
+        <div class="hero-slide s1 on"></div>
+        <div class="hero-slide s2"></div>
+        <div class="hero-slide s3"></div>
+      </div>
+      <div class="hero-overlay"></div>
+      <div class="hero-banner"></div>
+      <div class="hero-pager" id="heroPager"></div>
+      <div class="container hero-grid">
+        <div class="headline reveal">
+          <span class="tag">个人家装服务 · 设计+落地一体化</span>
+          <h1>从房子到家，<br/>把审美、功能与施工质量一次做对</h1>
+          <p class="sub">
+            面向个人客户，提供全屋装修设计与全屋施工落地服务。我们坚持“以人为本，从心出发”，
+            在空间动线、材料细节、施工执行上形成闭环交付。
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="tel:13773168019">电话咨询</a>
+            <a class="btn btn-ghost" href="#contact">预约量房</a>
+          </div>
+        </div>
+
+        <aside class="hero-card reveal">
+          <h3 style="margin:0; font-size:20px;">家装交付，不只看效果图</h3>
+          <p style="margin:0; color:var(--muted); line-height:1.8;">
+            设计方案、预算透明、工序管理、节点验收，全链路可追踪。
+          </p>
+          <div class="kpi">
+            <div class="item">
+              <div class="n">1对1</div>
+              <div class="t">主理设计师深度跟进</div>
+            </div>
+            <div class="item">
+              <div class="n">全周期</div>
+              <div class="t">从需求到施工落地</div>
+            </div>
+            <div class="item">
+              <div class="n">可视化</div>
+              <div class="t">节点进度与材料确认</div>
+            </div>
+            <div class="item">
+              <div class="n">可复盘</div>
+              <div class="t">预算、工艺、验收闭环</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="services" class="screen">
+      <div class="container">
+        <h2 class="sec-title reveal">核心服务</h2>
+        <p class="sec-sub reveal">覆盖“全屋装修设计 + 全屋施工落地”，兼顾审美表达与长期居住体验。</p>
+
+        <div class="services reveal">
+          <article class="card">
+            <h3>全屋装修设计</h3>
+            <p>平面布局优化、收纳系统、灯光场景、材质搭配、软装策略，输出可落地的完整设计方案。</p>
+          </article>
+          <article class="card">
+            <h3>全屋施工落地</h3>
+            <p>围绕水电、泥木、油漆、安装等关键工序进行施工管理，按节点验收，确保设计真实落地。</p>
+          </article>
+          <article class="card">
+            <h3>旧房焕新与局改</h3>
+            <p>针对老房与局部空间升级，聚焦动线、采光、储物与风格重塑，用有限预算做高质改变。</p>
+          </article>
+        </div>
+
+        <div class="process reveal">
+          <div class="step"><b>01 需求沟通</b><span>生活方式访谈，明确功能优先级与预算区间。</span></div>
+          <div class="step"><b>02 方案设计</b><span>平面+效果+材料策略，形成可执行方案。</span></div>
+          <div class="step"><b>03 报价与排期</b><span>清单透明，工期节点明确，减少隐性增项。</span></div>
+          <div class="step"><b>04 施工落地</b><span>关键工序巡检，节点验收，进度可视化反馈。</span></div>
+          <div class="step"><b>05 交付复盘</b><span>完工验收与居住优化建议，保障长期体验。</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="founder" class="screen">
+      <div class="container">
+        <h2 class="sec-title reveal">主理设计师 / 创始人 · 王夏云</h2>
+        <p class="sec-sub reveal">以设计赋空间，以质感筑生活。坚持“初心如磐，笃行不怠；以人为本，从心出发”。</p>
+
+        <div class="founder reveal">
+          <div class="portrait">
+            <div class="name">
+              <h3>王夏云</h3>
+              <p>主理设计师 · 创始人</p>
+            </div>
+          </div>
+          <div class="bio">
+            <p>
+              王夏云长期专注居住空间设计与落地管理，擅长在审美表达与实际生活之间找到平衡。
+              其作品偏好现代简约、意式风格与老钱风语境，注重空间秩序、材质触感与居住效率。
+            </p>
+            <p>
+              设计理念：不是“堆砌风格”，而是基于居住者真实习惯，做长期不过时、可持续使用的家。
+            </p>
+            <p style="color:#d6dfef;">
+              参考访谈关键词：<b>“从房子到家，只为您的满意”</b>、<b>“探索生活之美”</b>、<b>“以人为本，从心出发”</b>。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="works" class="screen">
+      <div class="container">
+        <h2 class="sec-title reveal">风格方向与案例表达</h2>
+        <p class="sec-sub reveal">可根据房屋条件、家庭结构与预算，组合出最适合你的空间解法。</p>
+
+        <div class="works reveal">
+          <div class="work"><b>意式极简</b><p>克制配色与材质对比，强调空间秩序与细节质感。</p></div>
+          <div class="work"><b>现代简约</b><p>干净线条与实用布局，提升日常居住效率。</p></div>
+          <div class="work"><b>老钱风</b><p>低饱和配色与精致材质，构建沉稳耐看的家居气质。</p></div>
+          <div class="work"><b>个性化混搭</b><p>根据生活习惯定制功能区，兼顾审美与可持续使用。</p></div>
+        </div>
+
+        <div class="showcase reveal">
+          <div class="show-head">
+            <h3>精选空间案例</h3>
+            <div class="dots" id="caseDots"></div>
+          </div>
+          <div class="carousel" id="caseCarousel">
+            <article class="slide active">
+              <h4>案例A｜145㎡ 意式极简三居</h4>
+              <p>关键词：洄游动线 / 灯光分层 / 岛台社交。通过收纳系统隐藏杂物，客餐厨一体化提升家庭互动频率。</p>
+            </article>
+            <article class="slide">
+              <h4>案例B｜98㎡ 老房焕新</h4>
+              <p>关键词：采光优化 / 卫浴重构 / 预算控制。优先改善痛点空间，控制总造价同时实现质感升级。</p>
+            </article>
+            <article class="slide">
+              <h4>案例C｜130㎡ 现代简约</h4>
+              <p>关键词：亲子收纳 / 功能分区 / 材质统一。让家庭成员都能“好用、好住、好维护”。</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="testimonials reveal">
+          <h3>客户反馈</h3>
+          <div class="t-grid">
+            <blockquote>“最打动我的是设计和施工是一套人负责，沟通成本低，落地还原度高。”<small>— 苏州业主 · 王女士</small></blockquote>
+            <blockquote>“预算和工期都讲得很清楚，节点验收也非常细，整体非常省心。”<small>— 昆山业主 · 张先生</small></blockquote>
+            <blockquote>“不是只追求好看，生活细节都被考虑到了，入住后舒适度非常高。”<small>— 常熟业主 · 李女士</small></blockquote>
+          </div>
+        </div>
+
+        <div class="cta reveal" id="contact">
+          <div>
+            <h3>准备开始你的家装计划？</h3>
+            <p>
+              留下你的户型与预算，我们将提供一次初步方案评估。
+              适合首次装修、改善型装修、旧房焕新等个人家庭场景。
+            </p>
+          </div>
+          <div class="contact-box">
+            <div class="contact-row"><span>咨询电话</span><b>13773168019</b></div>
+            <div class="contact-row"><span>服务内容</span><b>全屋设计 / 全屋施工</b></div>
+            <div class="contact-row"><span>服务对象</span><b>个人家装客户</b></div>
+            <div class="contact-row"><span>公司名称</span><b>江苏添点工程建设有限公司</b></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      © <span id="year"></span> 江苏添点工程建设有限公司 · 主理设计师与创始人：王夏云
+    </div>
+  </footer>
+
+  <div class="float-cta">
+    <a class="tel" href="tel:13773168019">📞 立即拨打</a>
+    <a class="wechat" href="#contact">💬 咨询方案</a>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('show');
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    const hero = document.querySelector('.hero');
+    const headline = document.querySelector('.headline');
+    const screens = [...document.querySelectorAll('.screen')];
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    if (!isMobile) {
+      window.addEventListener('scroll', () => {
+        const y = Math.min(window.scrollY, 700);
+        if (headline) headline.style.transform = `translateY(${y * 0.035}px)`;
+        screens.forEach(sec => {
+          const r = sec.getBoundingClientRect();
+          const p = Math.max(-1, Math.min(1, r.top / window.innerHeight));
+          const inner = sec.querySelector('.container');
+          if (inner) inner.style.transform = `translateY(${p * -8}px)`;
+        });
+      }, { passive: true });
+    }
+
+    const heroSlides = [...document.querySelectorAll('.hero-slide')];
+    const heroPager = document.getElementById('heroPager');
+    let heroIdx = 0;
+    function showHero(i){
+      heroSlides.forEach((s,n)=>s.classList.toggle('on', n===i));
+      [...heroPager.querySelectorAll('button')].forEach((b,n)=>b.classList.toggle('on', n===i));
+      heroIdx=i;
+    }
+    heroSlides.forEach((_,i)=>{ const b=document.createElement('button'); b.onclick=()=>showHero(i); heroPager.appendChild(b); });
+    showHero(0);
+    setInterval(()=>showHero((heroIdx+1)%heroSlides.length), 4200);
+
+    const slides = [...document.querySelectorAll('.slide')];
+    const dotsWrap = document.getElementById('caseDots');
+    let idx = 0;
+    function showSlide(i){
+      slides.forEach((s,n)=>s.classList.toggle('active', n===i));
+      [...dotsWrap.querySelectorAll('button')].forEach((b,n)=>b.classList.toggle('on', n===i));
+      idx = i;
+    }
+    slides.forEach((_,i)=>{
+      const b = document.createElement('button');
+      b.onclick = ()=>showSlide(i);
+      dotsWrap.appendChild(b);
+    });
+    showSlide(0);
+    setInterval(()=>showSlide((idx+1)%slides.length), 3800);
+  </script>
+</body>
+</html>
