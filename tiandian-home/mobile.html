@@ -1,393 +1,1140 @@
 <!doctype html>
 <html lang="zh-CN">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>江苏添点工程建设有限公司｜移动端家装服务页</title>
-  <meta name="description" content="江苏添点工程建设有限公司，专注个人家装服务：全屋装修设计、全屋施工落地。主理设计师与创始人：王夏云。" />
+  <script>!function () { var u = /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent), w = window.innerWidth || document.documentElement.clientWidth; if (!u && w > 768) location.replace('index.html' + location.hash) }()</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>江苏添点建设工程有限公司｜全屋装修设计与施工落地</title>
+  <meta name="description" content="江苏添点建设工程有限公司，专注个人家装服务：全屋装修设计、全屋施工落地。主理设计师与创始人：王夏云。" />
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23c8a86e' rx='18' width='100' height='100'/%3E%3Ctext x='50' y='68' font-size='58' font-weight='bold' fill='%23111' text-anchor='middle' font-family='serif'%3E添%3C/text%3E%3C/svg%3E" />
+  <meta property="og:title" content="江苏添点建设工程有限公司｜全屋装修设计与施工落地" />
+  <meta property="og:description" content="从房子到家，让空间回归宁静与质感。专注个人家装服务。" />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#09090b" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+    rel="stylesheet" />
   <style>
     :root {
-      --bg: #0c0f14;
-      --panel: #131923;
-      --line: #2a3445;
-      --text: #e9eef7;
-      --muted: #9eacc4;
-      --brand: #d8b47c;
-      --brand-2: #8fb7ff;
-      --ok: #5fd39d;
-      --max: 1180px;
-      --radius: 16px;
-      --shadow: 0 16px 40px rgba(0,0,0,.35);
+      --bg: #09090b;
+      --panel: rgba(24, 22, 20, .8);
+      --line: rgba(200, 170, 110, .1);
+      --text: #f5f0e8;
+      --text-secondary: rgba(245, 240, 232, .6);
+      --muted: #a09585;
+      --brand: #c8a86e;
+      --brand-light: #e6d4a8;
+      --brand-warm: #d4a054;
+      --brand-glow: rgba(200, 168, 110, .3);
+      --glass: rgba(255, 255, 255, .03);
+      --glass-border: rgba(255, 255, 255, .06);
+      --radius: 14px;
+      --radius-lg: 18px;
+      --font-sans: "Noto Sans SC", "PingFang SC", system-ui, sans-serif;
+      --font-serif: "Noto Serif SC", "Songti SC", serif;
     }
 
-    * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: "PingFang SC", "Segoe UI", sans-serif; scroll-behavior:smooth; }
-    body{ scroll-snap-type: y proximity; }
-    a { color: inherit; text-decoration: none; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    .container { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 18px; }
+    html {
+      scroll-behavior: smooth;
+    }
 
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      line-height: 1.6;
+      padding-bottom: calc(56px + env(safe-area-inset-bottom));
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: var(--font-serif);
+      font-weight: 600;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* ─── SCROLL PROGRESS ─── */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      height: 2px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--brand), var(--brand-warm));
+      pointer-events: none;
+    }
+
+    /* ─── NAV ─── */
     .nav {
-      position: sticky; top: 0; z-index: 50;
-      backdrop-filter: blur(8px);
-      background: rgba(12,15,20,.68);
-      border-bottom: 1px solid rgba(255,255,255,.06);
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      backdrop-filter: blur(20px) saturate(1.4);
+      -webkit-backdrop-filter: blur(20px) saturate(1.4);
+      background: rgba(9, 9, 11, .7);
+      border-bottom: 1px solid rgba(255, 255, 255, .04);
+      padding-top: env(safe-area-inset-top);
     }
-    .nav-inner {
-      height: 66px; display: flex; align-items: center; justify-content: space-between;
-    }
-    .logo { font-weight: 700; letter-spacing: .5px; }
-    .logo small { color: var(--muted); font-weight: 500; margin-left: 8px; font-size: 12px; }
-    .nav-links { display: flex; gap: 18px; color: var(--muted); font-size: 14px; }
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center;
-      padding: 10px 16px; border-radius: 999px; border: 1px solid transparent;
-      font-size: 14px; cursor: pointer; transition: .2s;
-    }
-    .btn-primary { background: linear-gradient(135deg, var(--brand), #f0d5aa); color: #1a1a1a; font-weight: 700; }
-    .btn-ghost { border-color: rgba(255,255,255,.18); color: var(--text); }
 
-    .hero {
-      position: relative;
-      overflow: hidden;
-      min-height: 88vh;
+    .nav-inner {
+      height: 56px;
       display: flex;
       align-items: center;
-      padding: 92px 0 72px;
-      background:
-        radial-gradient(1000px 380px at 12% -10%, rgba(143,183,255,.30), transparent 58%),
-        radial-gradient(760px 300px at 90% 0%, rgba(216,180,124,.30), transparent 62%),
-        linear-gradient(180deg, #0c0f14 0%, #0e1320 100%);
-      border-bottom: 1px solid rgba(255,255,255,.08);
+      justify-content: space-between;
     }
-    .hero-slides{ position:absolute; inset:0; }
-    .hero-slide{
-      position:absolute; inset:0; opacity:0; transition:opacity 1.2s ease;
-      background-size:cover; background-position:center;
-      transform:scale(1.05);
-    }
-    .hero-slide.on{ opacity:1; }
-    .hero-slide.s1{ background-image:linear-gradient(120deg, rgba(15,23,42,.65), rgba(15,23,42,.72)), url('https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=2000&auto=format&fit=crop'); }
-    .hero-slide.s2{ background-image:linear-gradient(120deg, rgba(15,23,42,.65), rgba(15,23,42,.72)), url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2000&auto=format&fit=crop'); }
-    .hero-slide.s3{ background-image:linear-gradient(120deg, rgba(15,23,42,.65), rgba(15,23,42,.72)), url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb3?q=80&w=2000&auto=format&fit=crop'); }
-    .hero-overlay{
-      position:absolute; inset:0; background:linear-gradient(180deg, rgba(8,11,16,.35), rgba(8,11,16,.7));
-      pointer-events:none;
-    }
-    .hero-pager{ position:absolute; left:50%; bottom:26px; transform:translateX(-50%); display:flex; gap:8px; z-index:3; }
-    .hero-pager button{ width:26px;height:4px;border:none;border-radius:999px;background:rgba(255,255,255,.35);padding:0;cursor:pointer }
-    .hero-pager button.on{ background:var(--brand); }
 
-    .hero::before,
-    .hero::after {
-      content: "";
-      position: absolute;
-      width: 320px;
-      height: 320px;
-      border-radius: 50%;
-      filter: blur(48px);
-      opacity: .4;
-      pointer-events: none;
-      animation: floatGlow 9s ease-in-out infinite;
+    .logo {
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 1;
+      min-width: 0;
     }
-    .hero::before { background: #6ca8ff; left: -90px; top: -90px; }
-    .hero::after { background: #e2b676; right: -100px; top: -120px; animation-delay: -3s; }
-    .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 22px; align-items: stretch; }
-    .hero-banner {
-      position: absolute;
+
+    .logo-mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, var(--brand), var(--brand-warm));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      color: #111;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      transition: color .2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all .2s;
+      letter-spacing: .3px;
+      flex-shrink: 0;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--brand), var(--brand-warm));
+      color: #111;
+    }
+
+    .btn-ghost {
+      border-color: rgba(255, 255, 255, .15);
+      color: var(--text);
+    }
+
+    /* ─── OPENING QUOTE ─── */
+    .opening-quote {
+      position: fixed;
       inset: 0;
+      z-index: 120;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at center, rgba(8, 10, 15, .88), rgba(4, 6, 10, .98));
+      opacity: 0;
       pointer-events: none;
-      background: linear-gradient(180deg, rgba(255,255,255,.03), transparent 30%, transparent 70%, rgba(255,255,255,.02));
-      mask-image: radial-gradient(circle at center, black 20%, transparent 85%);
+      transition: opacity .8s ease;
     }
-    .headline {
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
-      border: 1px solid rgba(255,255,255,.16);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(8px);
-      padding: 30px;
-      position: relative;
-      overflow: hidden;
+
+    .opening-quote.show {
+      opacity: 1;
     }
-    .headline::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.08) 40%, transparent 75%);
-      transform: translateX(-120%);
-      animation: shine 6s ease-in-out infinite;
-      pointer-events: none;
+
+    .opening-quote.hide {
+      opacity: 0;
     }
-    .tag { display: inline-block; font-size: 12px; color: #111; background: var(--ok); border-radius: 999px; padding: 4px 10px; margin-bottom: 12px; }
-    h1 {
-      margin: 0;
-      font-size: 56px;
-      line-height: 1.12;
-      letter-spacing: .6px;
-      background: linear-gradient(120deg, #f5f7fb 0%, #dbe7ff 45%, #f2cf97 100%);
+
+    .opening-quote h2 {
+      padding: 0 20px;
+      text-align: center;
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 22px;
+      line-height: 1.5;
+      letter-spacing: 1px;
+      background: linear-gradient(120deg, #f7f9ff 0%, #e7efff 45%, #ead7b5 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      text-shadow: 0 0 24px rgba(255,255,255,.16);
+      animation: quoteRise 1.2s cubic-bezier(.2, .65, .2, 1);
     }
-    .sub { margin-top: 14px; color: var(--muted); line-height: 1.75; }
-    .hero-actions { margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap; }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: calc(100svh - 56px);
+      display: flex;
+      align-items: center;
+      padding: 20px 0 40px;
+    }
+
+    .hero-slides {
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1.2s ease;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero-slide.on {
+      opacity: 1;
+    }
+
+    .hero-slide.s1 {
+      background-image: linear-gradient(120deg, rgba(9, 9, 11, .72), rgba(14, 12, 10, .82)), url('https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1200&auto=format&fit=crop');
+    }
+
+    .hero-slide.s2 {
+      background-image: linear-gradient(120deg, rgba(9, 9, 11, .72), rgba(14, 12, 10, .82)), url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1200&auto=format&fit=crop');
+    }
+
+    .hero-slide.s3 {
+      background-image: linear-gradient(120deg, rgba(9, 9, 11, .7), rgba(14, 12, 10, .82)), url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb3?q=80&w=1200&auto=format&fit=crop');
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, rgba(9, 9, 11, .2) 0%, rgba(9, 9, 11, .65) 100%);
+    }
+
+    .hero-pager {
+      position: absolute;
+      left: 50%;
+      bottom: 16px;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 3;
+    }
+
+    .hero-pager button {
+      width: 24px;
+      height: 3px;
+      border: none;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .25);
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .hero-pager button.on {
+      background: var(--brand);
+      width: 40px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .headline {
+      background: linear-gradient(160deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .015));
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: var(--radius-lg);
+      padding: 24px 20px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: .5px;
+      color: #111;
+      background: linear-gradient(135deg, var(--brand), var(--brand-warm));
+      border-radius: 999px;
+      padding: 4px 12px;
+      margin-bottom: 14px;
+      font-weight: 600;
+      font-family: var(--font-sans);
+    }
+
+    h1 {
+      font-size: 26px;
+      line-height: 1.3;
+      letter-spacing: .5px;
+      background: linear-gradient(135deg, #fff 0%, var(--text) 35%, var(--brand-light) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .sub {
+      margin-top: 14px;
+      color: var(--text-secondary);
+      line-height: 1.85;
+      font-size: 14px;
+    }
+
+    .hero-actions {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .hero-actions .btn {
+      width: 100%;
+      padding: 12px;
+      font-size: 14px;
+      text-align: center;
+    }
 
     .hero-card {
-      background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
-      padding: 22px; display: flex; flex-direction: column; gap: 14px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 20px 16px;
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
     }
-    .kpi { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; }
-    .kpi .item { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 12px; }
-    .kpi .n { font-size: 22px; font-weight: 700; color: var(--brand); }
-    .kpi .t { color: var(--muted); font-size: 12px; }
 
-    section { padding: 72px 0; }
-    .screen{ min-height:100vh; scroll-snap-align:start; display:flex; align-items:center; }
-    .screen > .container{ width:100%; }
-    .screen .reveal{ transition: opacity .8s ease, transform .8s ease; }
+    .hero-card h3 {
+      font-size: 17px;
+    }
+
+    .hero-card>p {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 13px;
+      font-family: var(--font-sans);
+    }
+
+    .kpi {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .kpi .item {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 12px;
+    }
+
+    .kpi .n {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--brand);
+      font-family: var(--font-serif);
+    }
+
+    .kpi .t {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 2px;
+      font-family: var(--font-sans);
+    }
+
+    .hero-note {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      padding: 12px;
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      background: var(--glass);
+      font-family: var(--font-sans);
+    }
+
+    /* ─── SECTIONS ─── */
+    section {
+      padding: 48px 0;
+      position: relative;
+    }
+
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 5%, var(--line) 50%, transparent 95%);
+    }
 
     .reveal {
       opacity: 0;
-      transform: translateY(22px) scale(.99);
-      transition: opacity .7s ease, transform .7s ease;
-      will-change: transform, opacity;
+      transform: translateY(20px);
+      transition: opacity .6s ease, transform .6s ease;
     }
+
     .reveal.show {
       opacity: 1;
-      transform: translateY(0) scale(1);
+      transform: translateY(0);
     }
-    .sec-title { font-size: 28px; margin: 0; }
-    .sec-sub { color: var(--muted); margin-top: 10px; line-height: 1.8; }
 
-    .services {
-      display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-top: 20px;
+    .sec-header {
+      margin-bottom: 28px;
     }
-    .card {
-      background: linear-gradient(180deg, rgba(19,25,35,.95), rgba(19,25,35,.72));
-      border: 1px solid var(--line); border-radius: 14px; padding: 18px;
-      transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
-      position: relative; overflow: hidden;
-    }
-    .card::before{
-      content:""; position:absolute; inset:0;
-      background: radial-gradient(240px 80px at 10% 0%, rgba(143,183,255,.15), transparent 70%);
-      pointer-events:none;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(216,180,124,.68);
-      box-shadow: 0 12px 28px rgba(0,0,0,.35), 0 0 0 1px rgba(216,180,124,.15) inset;
-    }
-    .card h3 { margin: 0 0 10px; font-size: 18px; }
-    .card p { margin: 0; color: var(--muted); line-height: 1.75; }
 
-    .process {
-      margin-top: 18px; display: grid; grid-template-columns: repeat(5,1fr); gap: 10px;
+    .sec-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--brand);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      font-weight: 600;
+      font-family: var(--font-sans);
     }
-    .step {
-      background: rgba(255,255,255,.02); border: 1px dashed rgba(255,255,255,.2);
-      border-radius: 12px; padding: 14px;
-    }
-    .step b { display: block; color: var(--brand-2); margin-bottom: 6px; font-size: 13px; }
-    .step span { color: var(--muted); font-size: 13px; line-height: 1.65; }
 
-    .founder {
-      display: grid; grid-template-columns: .8fr 1.2fr; gap: 14px; margin-top: 22px;
+    .sec-label::before {
+      content: "";
+      width: 20px;
+      height: 1px;
+      background: var(--brand);
     }
-    .portrait {
-      background: linear-gradient(160deg, rgba(216,180,124,.18), rgba(143,183,255,.15));
-      border: 1px solid rgba(255,255,255,.14); border-radius: 14px; padding: 22px;
-      display: flex; align-items: center; justify-content: center; min-height: 260px;
+
+    .sec-title {
+      font-size: 24px;
+      line-height: 1.35;
+      letter-spacing: .5px;
     }
-    .portrait .name {
+
+    .sec-sub {
+      color: var(--muted);
+      margin-top: 10px;
+      line-height: 1.85;
+      font-size: 14px;
+      font-family: var(--font-sans);
+    }
+
+    /* ─── TRUST BAR ─── */
+    .trust-bar {
+      background: rgba(200, 168, 110, .03);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 28px 0;
+    }
+
+    .trust-items {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
       text-align: center;
     }
-    .portrait .name h3 { margin: 0; font-size: 28px; }
-    .portrait .name p { margin-top: 10px; color: var(--muted); }
+
+    .trust-num {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--brand);
+      line-height: 1.2;
+    }
+
+    .trust-label {
+      color: var(--muted);
+      font-size: 12px;
+      font-family: var(--font-sans);
+    }
+
+    /* ─── SERVICES ─── */
+    .card {
+      background: linear-gradient(180deg, rgba(24, 22, 20, .92), rgba(20, 18, 16, .7));
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      padding: 24px 20px;
+      margin-bottom: 12px;
+      position: relative;
+    }
+
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(200, 168, 110, .12), rgba(200, 168, 110, .04));
+      border: 1px solid rgba(200, 168, 110, .18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-family: var(--font-serif);
+      color: var(--brand);
+      margin-bottom: 14px;
+    }
+
+    .card h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: var(--muted);
+      line-height: 1.85;
+      font-size: 14px;
+      font-family: var(--font-sans);
+    }
+
+    .process {
+      margin-top: 24px;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .03);
+    }
+
+    .step:last-child {
+      border-bottom: none;
+    }
+
+    .step-num {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, rgba(200, 168, 110, .12), rgba(200, 168, 110, .04));
+      border: 1.5px solid rgba(200, 168, 110, .22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--brand);
+      font-family: var(--font-serif);
+    }
+
+    .step b {
+      display: block;
+      color: var(--text);
+      margin-bottom: 4px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .step span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+      font-family: var(--font-sans);
+    }
+
+    /* ─── PHILOSOPHY ─── */
+    .phil-item {
+      padding: 28px 20px;
+      border-radius: var(--radius);
+      margin-bottom: 12px;
+      background: linear-gradient(180deg, rgba(24, 22, 20, .85), rgba(20, 18, 16, .55));
+      border: 1px solid var(--glass-border);
+    }
+
+    .phil-num {
+      font-family: var(--font-serif);
+      font-size: 40px;
+      font-weight: 700;
+      color: rgba(200, 168, 110, .12);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .phil-item h3 {
+      font-size: 19px;
+      margin-bottom: 10px;
+    }
+
+    .phil-item p {
+      color: var(--muted);
+      line-height: 1.85;
+      font-size: 14px;
+      font-family: var(--font-sans);
+    }
+
+    /* ─── FOUNDER ─── */
+    .portrait {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      position: relative;
+      min-height: 300px;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, .4);
+    }
+
+    .portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .portrait-overlay {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, transparent 40%, rgba(9, 9, 11, .75) 100%);
+    }
+
+    .portrait .badge {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 14px;
+      background: rgba(9, 9, 11, .5);
+      border: 1px solid rgba(255, 255, 255, .1);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 14px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+    }
+
+    .portrait .badge h3 {
+      font-size: 20px;
+    }
+
+    .portrait .badge p {
+      margin: 2px 0 0;
+      color: var(--text-secondary);
+      font-size: 13px;
+      font-family: var(--font-sans);
+    }
+
+    .portrait .badge small {
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 1px;
+      font-family: var(--font-sans);
+    }
 
     .bio {
-      background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 22px;
+      background: linear-gradient(180deg, rgba(24, 22, 20, .88), rgba(18, 16, 14, .65));
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 24px 20px;
+      margin-top: 14px;
     }
-    .bio p { color: var(--muted); line-height: 1.85; margin: 0 0 10px; }
 
-    .works {
-      margin-top: 18px; display: grid; grid-template-columns: repeat(4,1fr); gap: 10px;
+    .bio h4 {
+      font-size: 19px;
+      margin-bottom: 14px;
     }
+
+    .bio p {
+      color: var(--text-secondary);
+      line-height: 1.9;
+      font-size: 14px;
+      margin-bottom: 12px;
+      font-family: var(--font-sans);
+    }
+
+    .bio .quote {
+      margin: 14px 0 18px;
+      padding: 14px 16px;
+      border-left: 3px solid var(--brand);
+      background: linear-gradient(90deg, rgba(200, 168, 110, .05), transparent);
+      color: rgba(245, 240, 232, .8);
+      border-radius: 0 12px 12px 0;
+      font-size: 14px;
+      line-height: 1.85;
+      font-family: var(--font-sans);
+    }
+
+    .bio-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin: 14px 0 10px;
+    }
+
+    .bio-tags span {
+      font-size: 12px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(200, 168, 110, .18);
+      background: rgba(200, 168, 110, .05);
+      color: var(--brand-light);
+      font-family: var(--font-sans);
+    }
+
+    .bio-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .bio-item {
+      border: 1px solid var(--glass-border);
+      background: var(--glass);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+
+    .bio-item b {
+      display: block;
+      color: var(--brand);
+      font-size: 12px;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+
+    .bio-item span {
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.7;
+      font-family: var(--font-sans);
+    }
+
+    /* ─── WORKS ─── */
+    .works-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
     .work {
-      border-radius: 12px; border: 1px solid rgba(255,255,255,.16);
-      min-height: 130px; padding: 14px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.015));
-      position: relative; overflow: hidden;
-      transition: transform .2s ease, border-color .2s ease;
+      border-radius: var(--radius);
+      border: 1px solid var(--glass-border);
+      padding: 20px 16px;
+      background: linear-gradient(180deg, rgba(24, 22, 20, .85), rgba(20, 18, 16, .55));
     }
-    .work:hover{ transform: translateY(-4px); border-color: rgba(143,183,255,.7); }
-    .work::after{
-      content:""; position:absolute; inset:auto -40% -40% auto; width:150px; height:150px;
-      background: radial-gradient(circle, rgba(143,183,255,.2) 0%, transparent 70%);
-      pointer-events:none;
+
+    .work b {
+      color: var(--brand);
+      font-size: 15px;
+      display: block;
+      margin-bottom: 8px;
+      font-family: var(--font-serif);
     }
-    .work b { color: var(--brand); font-size: 14px; }
-    .work p { margin: 8px 0 0; color: var(--muted); font-size: 13px; line-height: 1.65; }
 
-    .showcase{ margin-top:20px; background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015)); border:1px solid rgba(255,255,255,.14); border-radius:14px; padding:16px; }
-    .show-head{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px; }
-    .show-head h3{ margin:0; font-size:20px; }
-    .carousel{ position:relative; min-height:138px; }
-    .slide{ display:none; border:1px solid rgba(255,255,255,.12); border-radius:12px; padding:14px; background:rgba(12,18,29,.75); }
-    .slide.active{ display:block; animation:fadeIn .5s ease; }
-    .slide h4{ margin:0 0 8px; color:var(--brand); font-size:16px; }
-    .slide p{ margin:0; color:var(--muted); line-height:1.8; }
-    .dots{ display:flex; gap:6px; }
-    .dots button{ width:9px; height:9px; border-radius:999px; border:none; padding:0; background:#4b5f82; cursor:pointer; }
-    .dots button.on{ background:var(--brand); box-shadow:0 0 10px rgba(216,180,124,.6); }
+    .work p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.75;
+      font-family: var(--font-sans);
+    }
 
-    .testimonials{ margin-top:16px; }
-    .testimonials h3{ margin:0 0 10px; font-size:20px; }
-    .t-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
-    .t-grid blockquote{ margin:0; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.12); border-radius:12px; padding:14px; color:#d9e2f2; line-height:1.8; }
-    .t-grid small{ display:block; margin-top:8px; color:var(--muted); }
+    .showcase {
+      margin-top: 20px;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 20px 16px;
+    }
 
+    .show-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .show-head h3 {
+      font-size: 18px;
+    }
+
+    .carousel {
+      position: relative;
+    }
+
+    .slide {
+      display: none;
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      padding: 18px 16px;
+      background: rgba(20, 18, 16, .6);
+    }
+
+    .slide.active {
+      display: block;
+      animation: slideIn .45s ease;
+    }
+
+    .slide h4 {
+      margin: 0 0 8px;
+      color: var(--brand);
+      font-size: 16px;
+    }
+
+    .slide p {
+      color: var(--text-secondary);
+      line-height: 1.85;
+      font-size: 14px;
+      font-family: var(--font-sans);
+    }
+
+    .dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .dots button {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      border: none;
+      padding: 0;
+      background: rgba(255, 255, 255, .12);
+      cursor: pointer;
+    }
+
+    .dots button.on {
+      background: var(--brand);
+      width: 22px;
+    }
+
+    .testimonials {
+      margin-top: 24px;
+    }
+
+    .testimonials h3 {
+      margin: 0 0 14px;
+      font-size: 18px;
+    }
+
+    .t-grid blockquote {
+      margin: 0 0 10px;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      padding: 20px 16px;
+      color: rgba(245, 240, 232, .7);
+      line-height: 1.85;
+      font-size: 14px;
+      font-family: var(--font-sans);
+    }
+
+    .t-grid blockquote::before {
+      content: "\201C";
+      display: block;
+      font-size: 36px;
+      line-height: 1;
+      color: var(--brand);
+      opacity: .3;
+      margin-bottom: 4px;
+      font-family: var(--font-serif);
+    }
+
+    .t-grid small {
+      display: block;
+      margin-top: 10px;
+      color: var(--brand);
+      font-size: 13px;
+      font-weight: 500;
+      font-family: var(--font-sans);
+    }
+
+    /* ─── CTA / CONTACT ─── */
     .cta {
-      margin-top: 26px;
-      background: linear-gradient(140deg, rgba(216,180,124,.16), rgba(143,183,255,.16));
-      border: 1px solid rgba(255,255,255,.2);
-      border-radius: 16px; padding: 22px;
-      display: grid; grid-template-columns: 1.2fr .8fr; gap: 14px; align-items: center;
+      margin-top: 28px;
+      background: linear-gradient(140deg, rgba(200, 168, 110, .06), rgba(196, 92, 74, .04));
+      border: 1px solid rgba(200, 168, 110, .12);
+      border-radius: var(--radius-lg);
+      padding: 24px 20px;
     }
-    .cta h3 { margin: 0 0 10px; font-size: 22px; }
-    .cta p { margin: 0; color: #d7deea; line-height: 1.8; }
+
+    .cta h3 {
+      font-size: 22px;
+      margin-bottom: 14px;
+      line-height: 1.4;
+    }
+
+    .cta p {
+      color: var(--text-secondary);
+      line-height: 1.85;
+      font-size: 14px;
+      margin-bottom: 18px;
+      font-family: var(--font-sans);
+    }
+
     .contact-box {
-      background: rgba(10,14,22,.55); border: 1px solid rgba(255,255,255,.14); border-radius: 12px; padding: 14px;
+      background: rgba(9, 9, 11, .5);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      padding: 16px;
     }
-    .contact-row { display: flex; justify-content: space-between; gap: 8px; padding: 8px 0; border-bottom: 1px dashed rgba(255,255,255,.12); }
-    .contact-row:last-child { border-bottom: none; }
-    .contact-row span { color: var(--muted); font-size: 13px; }
-    .contact-row b { font-size: 14px; }
 
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .04);
+      font-family: var(--font-sans);
+    }
+
+    .contact-row:last-child {
+      border-bottom: none;
+    }
+
+    .contact-row span {
+      color: var(--muted);
+      font-size: 13px;
+      flex: 0 0 60px;
+    }
+
+    .contact-row b {
+      font-size: 14px;
+      flex: 1;
+      text-align: right;
+    }
+
+    .contact-row.addr b {
+      font-size: 13px;
+      white-space: normal;
+      line-height: 1.5;
+    }
+
+    /* ─── FOOTER ─── */
     .footer {
-      border-top: 1px solid rgba(255,255,255,.08);
-      padding: 20px 0 34px; color: var(--muted); font-size: 13px;
+      border-top: 1px solid rgba(255, 255, 255, .04);
+      padding: 32px 0 80px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
     }
 
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+
+    .footer-brand .logo {
+      font-size: 13px;
+      justify-content: center;
+    }
+
+    .footer-brand .logo-mark {
+      width: 24px;
+      height: 24px;
+      font-size: 11px;
+      border-radius: 6px;
+    }
+
+    .footer-slogan {
+      color: var(--muted);
+      font-size: 12px;
+      opacity: .7;
+      font-family: var(--font-sans);
+    }
+
+    .footer-divider {
+      width: 40px;
+      height: 1px;
+      margin: 0 auto 14px;
+      background: linear-gradient(90deg, transparent, var(--line), transparent);
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      line-height: 1.6;
+      font-family: var(--font-sans);
+    }
+
+    .footer-version {
+      font-size: 11px;
+      color: rgba(160, 149, 133, .4);
+      margin-top: 4px;
+      font-family: var(--font-sans);
+    }
+
+    .footer-stats {
+      margin-top: 8px;
+      font-size: 12px;
+      color: rgba(160, 149, 133, .6);
+      line-height: 1.8;
+      font-family: var(--font-sans);
+    }
+
+    .footer-stats span {
+      margin: 0 4px;
+    }
+
+    /* ─── FLOAT CTA ─── */
     .float-cta {
-      position: fixed; right: 16px; bottom: 16px; z-index: 60;
-      display: flex; flex-direction: column; gap: 8px;
-      animation: floatY 3.4s ease-in-out infinite;
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 80;
+      display: flex;
+      gap: 0;
+      padding-bottom: env(safe-area-inset-bottom);
+      background: rgba(9, 9, 11, .95);
+      border-top: 1px solid rgba(255, 255, 255, .06);
     }
+
     .float-cta a {
-      display: inline-flex; align-items: center; justify-content: center;
-      min-width: 126px; padding: 11px 12px; border-radius: 10px; font-size: 13px;
-      box-shadow: var(--shadow);
-    }
-    .tel { background: linear-gradient(135deg, #f0d5aa, #d8b47c); color: #191919; font-weight: 700; }
-    .wechat { background: #1f9f62; color: #fff; }
-
-    @keyframes shine { 0%,100%{ transform: translateX(-120%);} 55%{ transform: translateX(120%);} }
-    @keyframes floatGlow { 0%,100%{ transform: translateY(0px) scale(1);} 50%{ transform: translateY(12px) scale(1.05);} }
-    @keyframes floatY { 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(-6px);} }
-    @keyframes fadeIn { from {opacity:0; transform:translateY(8px);} to {opacity:1; transform:translateY(0);} }
-
-    @media (max-width: 980px) {
-      .hero-grid, .founder, .cta { grid-template-columns: 1fr; }
-      .services { grid-template-columns: 1fr; }
-      .process { grid-template-columns: 1fr 1fr; }
-      .works { grid-template-columns: 1fr 1fr; }
-      .t-grid{ grid-template-columns:1fr; }
-      h1 { font-size: 34px; }
-      .nav-links { display: none; }
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 12px;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: var(--font-sans);
+      letter-spacing: .3px;
     }
 
-    @media (max-width: 560px) {
-      .process, .works { grid-template-columns: 1fr; }
-      .headline, .hero-card, .bio, .cta { padding: 16px; }
-      h1 { font-size: 26px; }
+    .tel {
+      background: linear-gradient(135deg, var(--brand-light), var(--brand-warm));
+      color: #111;
     }
-    /* 移动端增强（专版） */
-    @media (max-width: 768px) {
-      body{ scroll-snap-type: none; padding-bottom: calc(84px + env(safe-area-inset-bottom)); }
-      .container{ padding: 0 14px; }
-      .nav{ padding-top: env(safe-area-inset-top); }
-      .nav-inner{ height:56px; }
-      .logo{ font-size:13px; line-height:1.3; max-width:68%; }
-      .nav .btn{ padding:8px 12px; font-size:12px; }
 
-      .hero{ min-height: calc(100svh - 8px); padding:72px 0 22px; }
-      .hero-pager{ bottom: 12px; }
-      h1{ font-size:30px !important; line-height:1.18; }
-      .sub{ font-size:14px; line-height:1.72; }
-      .hero-grid{ gap:10px; }
-      .headline{ padding:16px; }
-      .hero-card{ padding:14px; }
-      .kpi{ grid-template-columns:1fr 1fr; }
+    .wechat {
+      background: linear-gradient(135deg, #25b86c, #1a9f5c);
+      color: #fff;
+    }
 
-      section{ padding:34px 0; }
-      .screen{ min-height:auto; align-items:flex-start; }
-      .sec-title{ font-size:24px; }
-      .sec-sub{ font-size:14px; line-height:1.72; }
-      .process{ grid-template-columns:1fr; }
-      .services,.works,.t-grid{ grid-template-columns:1fr; }
-      .cta{ grid-template-columns:1fr; padding:16px; }
-      .footer{ padding-bottom: calc(16px + env(safe-area-inset-bottom)); }
-
-      .float-cta{
-        right:10px;
-        left:10px;
-        bottom: calc(10px + env(safe-area-inset-bottom));
-        flex-direction:row;
-        animation:none;
+    /* ─── KEYFRAMES ─── */
+    @keyframes quoteRise {
+      0% {
+        opacity: 0;
+        transform: translateY(20px) scale(.96);
       }
-      .float-cta a{ flex:1; min-width:0; padding:10px 8px; font-size:12px; }
 
-      .hero::before,.hero::after,.card::after,.headline::after{ animation:none !important; }
+      50% {
+        opacity: 1;
+        transform: translateY(0) scale(1.01);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
+
 <body>
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- OPENING SLOGAN -->
+  <div class="opening-quote" id="openingQuote">
+    <h2>以设计赋空间，以质感筑生活</h2>
+  </div>
+
+  <!-- NAV -->
   <header class="nav">
     <div class="container nav-inner">
-      <div class="logo">江苏添点工程建设有限公司 <small>Residential Studio</small></div>
+      <div class="logo">
+        <div class="logo-mark">添</div>
+        江苏添点建设工程
+      </div>
       <nav class="nav-links">
         <a href="#services">服务</a>
         <a href="#founder">主理人</a>
-        <a href="#works">风格案例</a>
-        <a href="#contact">联系咨询</a>
+        <a href="#works">案例</a>
       </nav>
-      <a class="btn btn-primary" href="tel:13773168019">立即咨询</a>
+      <a class="btn btn-primary" href="tel:15962916316">咨询</a>
     </div>
   </header>
 
   <main>
-    <section class="hero screen">
+    <!-- HERO -->
+    <section class="hero">
       <div class="hero-slides">
         <div class="hero-slide s1 on"></div>
         <div class="hero-slide s2"></div>
         <div class="hero-slide s3"></div>
       </div>
       <div class="hero-overlay"></div>
-      <div class="hero-banner"></div>
       <div class="hero-pager" id="heroPager"></div>
-      <div class="container hero-grid">
+      <div class="container hero-content">
         <div class="headline reveal">
           <span class="tag">个人家装服务 · 设计+落地一体化</span>
-          <h1>从房子到家，<br/>把审美、功能与施工质量一次做对</h1>
+          <h1>从房子到家，<br />让空间回归宁静与质感</h1>
           <p class="sub">
-            面向个人客户，提供全屋装修设计与全屋施工落地服务。我们坚持“以人为本，从心出发”，
-            在空间动线、材料细节、施工执行上形成闭环交付。
+            面向个人家装客户，提供从全屋设计到全屋施工落地的一体化服务。
+            以中式留白的克制、禅意秩序的平衡与书法线条的节奏，
+            让空间在高端质感与日常实用之间取得平衡，做到雅俗共赏、久住不厌。
           </p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="tel:13773168019">电话咨询</a>
+            <a class="btn btn-primary" href="tel:15962916316">电话咨询</a>
             <a class="btn btn-ghost" href="#contact">预约量房</a>
           </div>
         </div>
 
-        <aside class="hero-card reveal">
-          <h3 style="margin:0; font-size:20px;">家装交付，不只看效果图</h3>
-          <p style="margin:0; color:var(--muted); line-height:1.8;">
-            设计方案、预算透明、工序管理、节点验收，全链路可追踪。
-          </p>
+        <div class="hero-card reveal">
+          <h3>家装交付，不只看效果图</h3>
+          <p>设计方案、预算透明、工序管理、节点验收，全链路可追踪。</p>
           <div class="kpi">
             <div class="item">
               <div class="n">1对1</div>
@@ -406,78 +1153,175 @@
               <div class="t">预算、工艺、验收闭环</div>
             </div>
           </div>
-        </aside>
+          <div class="hero-note">从前期沟通到最终交付，我们把每一个关键节点变成"看得见、可确认、可复盘"的标准流程。</div>
+        </div>
       </div>
     </section>
 
-    <section id="services" class="screen">
+    <!-- TRUST BAR -->
+    <div class="trust-bar reveal">
       <div class="container">
-        <h2 class="sec-title reveal">核心服务</h2>
-        <p class="sec-sub reveal">覆盖“全屋装修设计 + 全屋施工落地”，兼顾审美表达与长期居住体验。</p>
+        <div class="trust-items">
+          <div class="trust-item"><span class="trust-num">8+</span><span class="trust-label">年设计经验</span></div>
+          <div class="trust-item"><span class="trust-num">200+</span><span class="trust-label">交付案例</span></div>
+          <div class="trust-item"><span class="trust-num">98%</span><span class="trust-label">客户满意度</span></div>
+          <div class="trust-item"><span class="trust-num">1v1</span><span class="trust-label">主理设计师全程跟进</span></div>
+        </div>
+      </div>
+    </div>
 
-        <div class="services reveal">
+    <div class="section-divider"></div>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="container">
+        <div class="sec-header reveal">
+          <div class="sec-label">Our Services</div>
+          <h2 class="sec-title">核心服务</h2>
+          <p class="sec-sub">覆盖"全屋装修设计 + 全屋施工落地"，以专业标准做高端品质，以清晰流程做省心交付。</p>
+        </div>
+
+        <div class="reveal">
           <article class="card">
+            <div class="card-icon">宅</div>
             <h3>全屋装修设计</h3>
-            <p>平面布局优化、收纳系统、灯光场景、材质搭配、软装策略，输出可落地的完整设计方案。</p>
+            <p>从户型优化到风格落位，围绕动线、收纳、灯光、材质与软装进行系统设计，输出可施工、可验收、可长期居住的完整方案。</p>
           </article>
           <article class="card">
+            <div class="card-icon">筑</div>
             <h3>全屋施工落地</h3>
-            <p>围绕水电、泥木、油漆、安装等关键工序进行施工管理，按节点验收，确保设计真实落地。</p>
+            <p>围绕水电、泥木、油漆、安装等关键工序实施标准化管理，节点可查、过程可控，确保设计效果与施工质量同步兑现。</p>
           </article>
           <article class="card">
+            <div class="card-icon">焕</div>
             <h3>旧房焕新与局改</h3>
-            <p>针对老房与局部空间升级，聚焦动线、采光、储物与风格重塑，用有限预算做高质改变。</p>
+            <p>针对老房与局部空间升级，优先解决采光、动线、收纳与舒适度问题，在合理预算内实现质感升级与功能重构。</p>
           </article>
         </div>
 
         <div class="process reveal">
-          <div class="step"><b>01 需求沟通</b><span>生活方式访谈，明确功能优先级与预算区间。</span></div>
-          <div class="step"><b>02 方案设计</b><span>平面+效果+材料策略，形成可执行方案。</span></div>
-          <div class="step"><b>03 报价与排期</b><span>清单透明，工期节点明确，减少隐性增项。</span></div>
-          <div class="step"><b>04 施工落地</b><span>关键工序巡检，节点验收，进度可视化反馈。</span></div>
-          <div class="step"><b>05 交付复盘</b><span>完工验收与居住优化建议，保障长期体验。</span></div>
+          <div class="step">
+            <div class="step-num">01</div>
+            <div><b>需求沟通</b><span>了解家庭结构与生活习惯，明确功能优先级与预算边界。</span></div>
+          </div>
+          <div class="step">
+            <div class="step-num">02</div>
+            <div><b>方案设计</b><span>完成平面、风格、材料与预算协同设计，确保方案可落地。</span></div>
+          </div>
+          <div class="step">
+            <div class="step-num">03</div>
+            <div><b>报价与排期</b><span>清单透明、节点清晰、责任明确，减少后续不确定成本。</span></div>
+          </div>
+          <div class="step">
+            <div class="step-num">04</div>
+            <div><b>施工落地</b><span>按关键工序巡检与节点验收，确保品质、工期与还原度。</span></div>
+          </div>
+          <div class="step">
+            <div class="step-num">05</div>
+            <div><b>交付复盘</b><span>交付后持续优化居住体验，让家真正越住越舒服。</span></div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="founder" class="screen">
-      <div class="container">
-        <h2 class="sec-title reveal">主理设计师 / 创始人 · 王夏云</h2>
-        <p class="sec-sub reveal">以设计赋空间，以质感筑生活。坚持“初心如磐，笃行不怠；以人为本，从心出发”。</p>
+    <div class="section-divider"></div>
 
-        <div class="founder reveal">
+    <!-- DESIGN PHILOSOPHY -->
+    <section id="philosophy">
+      <div class="container">
+        <div class="sec-header reveal">
+          <div class="sec-label">Design Philosophy</div>
+          <h2 class="sec-title">设计哲学</h2>
+          <p class="sec-sub">我们相信，好的空间不需要解释。它在细节里生长，在日常中被感受。</p>
+        </div>
+        <div class="reveal">
+          <div class="phil-item">
+            <div class="phil-num">01</div>
+            <h3>留白即呼吸</h3>
+            <p>空间不是被填满的容器，而是留给生活节奏的余白。克制的设计，让居住者与空间产生对话。</p>
+          </div>
+          <div class="phil-item">
+            <div class="phil-num">02</div>
+            <h3>材质即语言</h3>
+            <p>木纹的温度、石材的力量、金属的克制——每种材质都在讲述空间的故事，构建触感层次与视觉节奏。</p>
+          </div>
+          <div class="phil-item">
+            <div class="phil-num">03</div>
+            <h3>功能即美学</h3>
+            <p>好的设计不需要解释。动线流畅即优雅，收纳隐形即简约，久住不厌即成功。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- FOUNDER -->
+    <section id="founder">
+      <div class="container">
+        <div class="sec-header reveal">
+          <div class="sec-label">Lead Designer</div>
+          <h2 class="sec-title">主理设计师 / 创始人 · 王夏云</h2>
+          <p class="sec-sub">以设计赋空间，以质感筑生活。坚持"初心如磐，笃行不怠；以人为本，从心出发"。</p>
+        </div>
+
+        <div class="reveal">
           <div class="portrait">
-            <div class="name">
-              <h3>王夏云</h3>
-              <p>主理设计师 · 创始人</p>
+            <img src="./assets-wangxiayun.png" alt="主理设计师 王夏云" />
+            <div class="portrait-overlay"></div>
+            <div class="badge">
+              <div>
+                <h3>王夏云</h3>
+                <p>主理设计师 · 创始人</p>
+              </div>
+              <small>Design for Life</small>
             </div>
           </div>
           <div class="bio">
-            <p>
-              王夏云长期专注居住空间设计与落地管理，擅长在审美表达与实际生活之间找到平衡。
-              其作品偏好现代简约、意式风格与老钱风语境，注重空间秩序、材质触感与居住效率。
-            </p>
-            <p>
-              设计理念：不是“堆砌风格”，而是基于居住者真实习惯，做长期不过时、可持续使用的家。
-            </p>
-            <p style="color:#d6dfef;">
-              参考访谈关键词：<b>“从房子到家，只为您的满意”</b>、<b>“探索生活之美”</b>、<b>“以人为本，从心出发”</b>。
-            </p>
+            <h4>以设计赋空间，以质感筑生活</h4>
+            <p style="color:rgba(245,240,232,.4);">她偏爱禅宗与佛学中"简、静、定"的精神，也将书法中的节奏与留白，转化为空间比例、材质层次与光影关系。</p>
+            <p>王夏云长期专注居住空间设计与施工落地管理，擅长在<strong style="color:var(--brand-light)">审美表达</strong>与<strong
+                style="color:var(--brand-light)">真实生活</strong>之间建立平衡。她坚持从"人"的日常动线出发，先解决好住、好用、好打理，再完成风格与质感表达。</p>
+            <p>作品偏好现代简约、意式风格与经典雅致风格，重视空间秩序、材质触感、光影层次与居住效率，从方案到落地，关注每一个节点的可执行性与还原度。</p>
+            <div class="bio-tags">
+              <span>现代简约</span><span>意式风格</span><span>经典雅致</span><span>全案落地</span><span>节点验收</span>
+            </div>
+            <div class="quote">设计理念：不是"堆砌风格"，而是基于居住者真实习惯，做长期不过时、可持续使用的家。</div>
+            <div class="bio-grid">
+              <div class="bio-item"><b>品牌主张</b><span>从房子到家，只为您的满意</span></div>
+              <div class="bio-item"><b>设计态度</b><span>探索生活之美，重视质感与长期体验</span></div>
+              <div class="bio-item"><b>方法原则</b><span>以人为本，从心出发，先解决功能再表达风格</span></div>
+              <div class="bio-item"><b>服务方法</b><span>需求沟通 → 方案共创 → 节点验收 → 交付复盘</span></div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="works" class="screen">
-      <div class="container">
-        <h2 class="sec-title reveal">风格方向与案例表达</h2>
-        <p class="sec-sub reveal">可根据房屋条件、家庭结构与预算，组合出最适合你的空间解法。</p>
+    <div class="section-divider"></div>
 
-        <div class="works reveal">
-          <div class="work"><b>意式极简</b><p>克制配色与材质对比，强调空间秩序与细节质感。</p></div>
-          <div class="work"><b>现代简约</b><p>干净线条与实用布局，提升日常居住效率。</p></div>
-          <div class="work"><b>老钱风</b><p>低饱和配色与精致材质，构建沉稳耐看的家居气质。</p></div>
-          <div class="work"><b>个性化混搭</b><p>根据生活习惯定制功能区，兼顾审美与可持续使用。</p></div>
+    <!-- WORKS -->
+    <section id="works">
+      <div class="container">
+        <div class="sec-header reveal">
+          <div class="sec-label">Style & Cases</div>
+          <h2 class="sec-title">风格方向与案例表达</h2>
+          <p class="sec-sub">根据房屋条件、家庭结构与预算偏好，组合出兼顾审美、功能与长期维护成本的空间解法。</p>
+        </div>
+
+        <div class="works-grid reveal">
+          <div class="work"><b>意式极简</b>
+            <p>克制配色与材质对比，强调空间秩序与细节质感。</p>
+          </div>
+          <div class="work"><b>现代简约</b>
+            <p>干净线条与实用布局，提升日常居住效率。</p>
+          </div>
+          <div class="work"><b>经典雅致</b>
+            <p>低饱和配色与精致材质，营造沉稳耐看、雅俗共赏的居住气质。</p>
+          </div>
+          <div class="work"><b>个性化混搭</b>
+            <p>根据生活习惯定制功能区，兼顾审美与可持续使用。</p>
+          </div>
         </div>
 
         <div class="showcase reveal">
@@ -496,7 +1340,7 @@
             </article>
             <article class="slide">
               <h4>案例C｜130㎡ 现代简约</h4>
-              <p>关键词：亲子收纳 / 功能分区 / 材质统一。让家庭成员都能“好用、好住、好维护”。</p>
+              <p>关键词：亲子收纳 / 功能分区 / 材质统一。让家庭成员都能"好用、好住、好维护"。</p>
             </article>
           </div>
         </div>
@@ -504,25 +1348,21 @@
         <div class="testimonials reveal">
           <h3>客户反馈</h3>
           <div class="t-grid">
-            <blockquote>“最打动我的是设计和施工是一套人负责，沟通成本低，落地还原度高。”<small>— 苏州业主 · 王女士</small></blockquote>
-            <blockquote>“预算和工期都讲得很清楚，节点验收也非常细，整体非常省心。”<small>— 昆山业主 · 张先生</small></blockquote>
-            <blockquote>“不是只追求好看，生活细节都被考虑到了，入住后舒适度非常高。”<small>— 常熟业主 · 李女士</small></blockquote>
+            <blockquote>设计和施工由同一团队负责，沟通顺畅、执行稳定，最终还原度超出预期。<small>— 苏州业主 · 王女士</small></blockquote>
+            <blockquote>预算与工期都很透明，节点验收细致，整个过程专业又省心。<small>— 昆山业主 · 张先生</small></blockquote>
+            <blockquote>不仅美观，更重要是好住、好用、好打理，入住后幸福感明显提升。<small>— 常熟业主 · 李女士</small></blockquote>
           </div>
         </div>
 
         <div class="cta reveal" id="contact">
-          <div>
-            <h3>准备开始你的家装计划？</h3>
-            <p>
-              留下你的户型与预算，我们将提供一次初步方案评估。
-              适合首次装修、改善型装修、旧房焕新等个人家庭场景。
-            </p>
-          </div>
+          <h3>准备开启你的<br />高品质家装计划？</h3>
+          <p>留下户型与预算，我们将提供一次有方向、有重点的初步方案评估。适用于首次装修、改善型装修与旧房焕新等个人家庭场景。</p>
           <div class="contact-box">
-            <div class="contact-row"><span>咨询电话</span><b>13773168019</b></div>
+            <div class="contact-row"><span>咨询电话</span><b>159 6291 6316</b></div>
             <div class="contact-row"><span>服务内容</span><b>全屋设计 / 全屋施工</b></div>
             <div class="contact-row"><span>服务对象</span><b>个人家装客户</b></div>
-            <div class="contact-row"><span>公司名称</span><b>江苏添点工程建设有限公司</b></div>
+            <div class="contact-row"><span>公司名称</span><b>江苏添点建设工程有限公司</b></div>
+            <div class="contact-row addr"><span>公司地址</span><b>江苏省南通市通州区金沙街道建设路66号新瑞商业大厦1502-1504室</b></div>
           </div>
         </div>
       </div>
@@ -531,70 +1371,111 @@
 
   <footer class="footer">
     <div class="container">
-      © <span id="year"></span> 江苏添点工程建设有限公司 · 主理设计师与创始人：王夏云
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-mark">添</div>
+          江苏添点建设工程有限公司
+        </div>
+        <div class="footer-slogan">从房子到家，让空间回归宁静与质感</div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-copy">© <span id="year"></span> 江苏添点建设工程有限公司</div>
+      <div class="footer-copy" style="margin-top:2px;">主理设计师与创始人：王夏云</div>
+      <div class="footer-version">v0.3.0 · 更新于 2026-03-24</div>
+      <div class="footer-stats">
+        <span id="busuanzi_container_site_pv" style="display:none;">总访问量 <span
+            id="busuanzi_value_site_pv"></span></span>
+        <span style="opacity:.4;">|</span>
+        <span id="busuanzi_container_site_uv" style="display:none;">访客数 <span id="busuanzi_value_site_uv"></span></span>
+        <span style="opacity:.4;">|</span>
+        <span>本次来源：<span id="visitSource">直接访问</span></span>
+      </div>
     </div>
   </footer>
 
-  <div class="float-cta">
-    <a class="tel" href="tel:13773168019">📞 立即拨打</a>
-    <a class="wechat" href="#contact">💬 咨询方案</a>
+  <div class="float-cta" id="floatCta">
+    <a class="tel" href="tel:15962916316">立即拨打</a>
+    <a class="wechat" href="#contact">咨询方案</a>
   </div>
 
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add('show');
-      });
-    }, { threshold: 0.15 });
+    // Scroll progress
+    var bar = document.getElementById('scrollProgress');
+    window.addEventListener('scroll', function () {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      if (h > 0) bar.style.width = (window.scrollY / h * 100) + '%';
+    }, { passive: true });
 
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    // Visit source
+    var ref = document.referrer || '';
+    var src = '直接访问';
+    if (ref) {
+      if (/baidu\.com|google\.|bing\.com|so\.com|sogou\.com|sm\.cn/i.test(ref)) src = '搜索引擎';
+      else if (/douyin\.com|xiaohongshu\.com|weixin\.qq\.com|weibo\.com|zhihu\.com/i.test(ref)) src = '社交平台';
+      else src = '外部网站';
+    }
+    var srcEl = document.getElementById('visitSource');
+    if (srcEl) srcEl.textContent = src;
 
-    const hero = document.querySelector('.hero');
-    const headline = document.querySelector('.headline');
-    const screens = [...document.querySelectorAll('.screen')];
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
-    if (!isMobile) {
-      window.addEventListener('scroll', () => {
-        const y = Math.min(window.scrollY, 700);
-        if (headline) headline.style.transform = `translateY(${y * 0.035}px)`;
-        screens.forEach(sec => {
-          const r = sec.getBoundingClientRect();
-          const p = Math.max(-1, Math.min(1, r.top / window.innerHeight));
-          const inner = sec.querySelector('.container');
-          if (inner) inner.style.transform = `translateY(${p * -8}px)`;
-        });
-      }, { passive: true });
+    // Opening quote
+    var oq = document.getElementById('openingQuote');
+    if (oq) {
+      requestAnimationFrame(function () { oq.classList.add('show'); });
+      setTimeout(function () { oq.classList.remove('show'); }, 2000);
+      setTimeout(function () { oq.classList.add('hide'); }, 2400);
+      setTimeout(function () { oq.style.display = 'none'; }, 3200);
     }
 
-    const heroSlides = [...document.querySelectorAll('.hero-slide')];
-    const heroPager = document.getElementById('heroPager');
-    let heroIdx = 0;
-    function showHero(i){
-      heroSlides.forEach((s,n)=>s.classList.toggle('on', n===i));
-      [...heroPager.querySelectorAll('button')].forEach((b,n)=>b.classList.toggle('on', n===i));
-      heroIdx=i;
+    // Reveal on scroll
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) e.target.classList.add('show'); });
+    }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+    // Hero slides
+    var heroSlides = [].slice.call(document.querySelectorAll('.hero-slide'));
+    var heroPager = document.getElementById('heroPager');
+    var heroIdx = 0;
+    function showHero(i) {
+      heroSlides.forEach(function (s, n) { s.classList.toggle('on', n === i); });
+      [].slice.call(heroPager.querySelectorAll('button')).forEach(function (b, n) { b.classList.toggle('on', n === i); });
+      heroIdx = i;
     }
-    heroSlides.forEach((_,i)=>{ const b=document.createElement('button'); b.onclick=()=>showHero(i); heroPager.appendChild(b); });
+    heroSlides.forEach(function (_, i) {
+      var b = document.createElement('button');
+      b.onclick = function () { showHero(i); };
+      heroPager.appendChild(b);
+    });
     showHero(0);
-    setInterval(()=>showHero((heroIdx+1)%heroSlides.length), 4200);
+    setInterval(function () { showHero((heroIdx + 1) % heroSlides.length); }, 5500);
 
-    const slides = [...document.querySelectorAll('.slide')];
-    const dotsWrap = document.getElementById('caseDots');
-    let idx = 0;
-    function showSlide(i){
-      slides.forEach((s,n)=>s.classList.toggle('active', n===i));
-      [...dotsWrap.querySelectorAll('button')].forEach((b,n)=>b.classList.toggle('on', n===i));
+    // Case carousel
+    var slides = [].slice.call(document.querySelectorAll('.slide'));
+    var dotsWrap = document.getElementById('caseDots');
+    var idx = 0;
+    function showSlide(i) {
+      slides.forEach(function (s, n) { s.classList.toggle('active', n === i); });
+      [].slice.call(dotsWrap.querySelectorAll('button')).forEach(function (b, n) { b.classList.toggle('on', n === i); });
       idx = i;
     }
-    slides.forEach((_,i)=>{
-      const b = document.createElement('button');
-      b.onclick = ()=>showSlide(i);
+    slides.forEach(function (_, i) {
+      var b = document.createElement('button');
+      b.onclick = function () { showSlide(i); };
       dotsWrap.appendChild(b);
     });
     showSlide(0);
-    setInterval(()=>showSlide((idx+1)%slides.length), 3800);
+    setInterval(function () { showSlide((idx + 1) % slides.length); }, 4500);
+
+    // Float CTA show after scroll
+    var fc = document.getElementById('floatCta');
+    fc.style.opacity = '0'; fc.style.transition = 'opacity .4s';
+    window.addEventListener('scroll', function () {
+      fc.style.opacity = window.scrollY > 300 ? '1' : '0';
+    }, { passive: true });
   </script>
 </body>
+
 </html>
