@@ -3,9 +3,16 @@
 
 <head>
   <meta charset="UTF-8" />
+  <script>!function () { var u = /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent), w = window.innerWidth || document.documentElement.clientWidth; if ((u || w <= 768) && location.pathname.indexOf('mobile.html') === -1) location.replace('mobile.html' + location.hash) }()</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>江苏添点建设工程有限公司｜全屋装修设计与施工落地</title>
   <meta name="description" content="江苏添点建设工程有限公司，专注个人家装服务：全屋装修设计、全屋施工落地。主理设计师与创始人：王夏云。" />
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23c8a86e' rx='18' width='100' height='100'/%3E%3Ctext x='50' y='68' font-size='58' font-weight='bold' fill='%23111' text-anchor='middle' font-family='serif'%3E添%3C/text%3E%3C/svg%3E" />
+  <meta property="og:title" content="江苏添点建设工程有限公司｜全屋装修设计与施工落地" />
+  <meta property="og:description" content="从房子到家，让空间回归宁静与质感。专注个人家装服务：全屋装修设计、全屋施工落地。" />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#09090b" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -1195,13 +1202,204 @@
       white-space: normal;
     }
 
+    /* ─── SCROLL PROGRESS ─── */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      height: 2px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--brand), var(--brand-warm));
+      transition: width 80ms linear;
+      pointer-events: none;
+    }
+
+    /* ─── HAMBURGER MENU ─── */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 91;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all .3s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .menu-toggle.open span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .menu-toggle.open span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .menu-toggle.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* ─── TRUST BAR ─── */
+    .trust-bar {
+      background: rgba(200, 168, 110, .03);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 40px 0;
+      position: relative;
+    }
+
+    .trust-items {
+      display: flex;
+      justify-content: space-around;
+      text-align: center;
+    }
+
+    .trust-item {
+      flex: 1;
+    }
+
+    .trust-num {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--brand);
+      margin-bottom: 6px;
+      line-height: 1.2;
+    }
+
+    .trust-label {
+      color: var(--muted);
+      font-size: 14px;
+      font-family: var(--font-sans);
+    }
+
+    /* ─── DESIGN PHILOSOPHY ─── */
+    #philosophy {
+      background: linear-gradient(180deg, var(--bg), rgba(200, 168, 110, .03) 50%, var(--bg));
+    }
+
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .phil-item {
+      padding: 44px 32px;
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(24, 22, 20, .85), rgba(20, 18, 16, .55));
+      border: 1px solid var(--glass-border);
+      position: relative;
+      transition: all .4s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .phil-item:hover {
+      border-color: rgba(200, 168, 110, .25);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, .3);
+    }
+
+    .phil-num {
+      font-family: var(--font-serif);
+      font-size: 52px;
+      font-weight: 700;
+      color: rgba(200, 168, 110, .12);
+      line-height: 1;
+      margin-bottom: 24px;
+    }
+
+    .phil-item h3 {
+      font-size: 22px;
+      margin-bottom: 14px;
+      font-family: var(--font-serif);
+      letter-spacing: .3px;
+    }
+
+    .phil-item p {
+      color: var(--muted);
+      line-height: 1.95;
+      font-size: 15px;
+    }
+
+    .phil-item::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 32px;
+      right: 32px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(200, 168, 110, .15), transparent);
+      opacity: 0;
+      transition: opacity .4s;
+    }
+
+    .phil-item:hover::after {
+      opacity: 1;
+    }
+
     /* ─── FOOTER ─── */
     .footer {
       border-top: 1px solid rgba(255, 255, 255, .04);
-      padding: 32px 0 44px;
+      padding: 40px 0 48px;
       color: var(--muted);
       font-size: 14px;
       text-align: center;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .footer-brand .logo {
+      font-size: 14px;
+      justify-content: center;
+    }
+
+    .footer-brand .logo-mark {
+      width: 28px;
+      height: 28px;
+      font-size: 12px;
+      border-radius: 7px;
+    }
+
+    .footer-slogan {
+      color: var(--muted);
+      font-size: 13px;
+      opacity: .7;
+    }
+
+    .footer-divider {
+      width: 60px;
+      height: 1px;
+      margin: 0 auto 20px;
+      background: linear-gradient(90deg, transparent, var(--line), transparent);
+    }
+
+    .footer-copy {
+      margin-bottom: 8px;
+    }
+
+    .footer-version {
+      font-size: 12px;
+      color: rgba(160, 149, 133, .4);
+      margin-top: 6px;
+      letter-spacing: .5px;
+      font-family: var(--font-sans);
     }
 
     .footer-stats {
@@ -1409,6 +1607,10 @@
       .opening-quote h2 {
         font-size: 38px;
       }
+
+      .philosophy-grid {
+        grid-template-columns: 1fr 1fr;
+      }
     }
 
     @media (max-width: 768px) {
@@ -1416,7 +1618,58 @@
         padding: 0 20px;
       }
 
+      .menu-toggle {
+        display: flex;
+      }
+
+      .logo {
+        font-size: 13px;
+        gap: 8px;
+        flex-shrink: 1;
+        min-width: 0;
+      }
+
+      .logo small {
+        display: none;
+      }
+
+      .nav .btn-primary {
+        padding: 8px 14px;
+        font-size: 12px;
+        flex-shrink: 0;
+        white-space: nowrap;
+      }
+
       .nav-links {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 0;
+        background: rgba(9, 9, 11, .96);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border-bottom: 1px solid var(--line);
+        padding: 8px 24px 16px;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 14px 0;
+        font-size: 15px;
+        border-bottom: 1px solid rgba(255, 255, 255, .04);
+      }
+
+      .nav-links a:last-child {
+        border-bottom: none;
+      }
+
+      .nav-links a::after {
         display: none;
       }
 
@@ -1469,8 +1722,9 @@
       }
 
       .opening-quote h2 {
-        font-size: 30px;
-        letter-spacing: 2px;
+        font-size: 28px;
+        letter-spacing: 1px;
+        padding: 0 16px;
       }
 
       .portrait {
@@ -1479,6 +1733,41 @@
 
       .cursor-glow {
         display: none;
+      }
+
+      .philosophy-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .phil-item {
+        padding: 32px 24px;
+      }
+
+      .phil-num {
+        font-size: 40px;
+        margin-bottom: 16px;
+      }
+
+      .trust-items {
+        flex-wrap: wrap;
+        gap: 24px;
+      }
+
+      .trust-item {
+        flex: 0 0 45%;
+      }
+
+      .trust-num {
+        font-size: 30px;
+      }
+
+      .footer {
+        padding-bottom: 100px;
+      }
+
+      .footer-copy {
+        font-size: 13px;
+        line-height: 1.6;
       }
     }
 
@@ -1516,13 +1805,98 @@
       }
 
       .opening-quote h2 {
+        font-size: 22px;
+        letter-spacing: 0px;
+        padding: 0 12px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      .kpi {
+        grid-template-columns: 1fr;
+      }
+
+      .trust-item {
+        flex: 0 0 100%;
+      }
+
+      .trust-num {
+        font-size: 28px;
+      }
+
+      .contact-box {
+        padding: 16px;
+      }
+
+      .contact-row span {
+        flex: 0 0 60px;
+        font-size: 13px;
+      }
+
+      .contact-row b {
+        font-size: 14px;
+      }
+
+      .cta {
+        padding: 24px 16px;
+      }
+
+      .cta h3 {
         font-size: 24px;
+      }
+
+      .float-cta {
+        right: 0;
+        left: 0;
+        bottom: 0;
+        flex-direction: row;
+        gap: 0;
+        border-radius: 0;
+      }
+
+      .float-cta a {
+        flex: 1;
+        min-width: 0;
+        padding: 14px 12px;
+        font-size: 14px;
+        border-radius: 0;
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, .3);
+      }
+
+      .float-cta a:hover {
+        transform: none;
+      }
+
+      .footer {
+        padding-bottom: 120px;
+      }
+
+      .portrait {
+        min-height: 300px;
+      }
+
+      .logo {
+        font-size: 12px;
+      }
+
+      .logo-mark {
+        width: 30px;
+        height: 30px;
+        font-size: 13px;
       }
     }
   </style>
 </head>
 
 <body>
+  <div class="scroll-progress" id="scrollProgress"></div>
   <div class="cursor-glow" id="cursorGlow"></div>
 
   <!-- OPENING SLOGAN -->
@@ -1539,12 +1913,16 @@
         <div class="logo-mark">添</div>
         江苏添点建设工程<small>Residential Studio</small>
       </div>
-      <nav class="nav-links">
+      <nav class="nav-links" id="navLinks">
         <a href="#services">服务</a>
+        <a href="#philosophy">理念</a>
         <a href="#founder">主理人</a>
         <a href="#works">案例</a>
         <a href="#contact">联系</a>
       </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="菜单">
+        <span></span><span></span><span></span>
+      </button>
       <a class="btn btn-primary" href="tel:15962916316">立即咨询</a>
     </div>
   </header>
@@ -1602,6 +1980,18 @@
       </div>
     </section>
 
+    <!-- TRUST BAR -->
+    <div class="trust-bar reveal">
+      <div class="container">
+        <div class="trust-items">
+          <div class="trust-item"><span class="trust-num">8+</span><span class="trust-label">年设计经验</span></div>
+          <div class="trust-item"><span class="trust-num">200+</span><span class="trust-label">交付案例</span></div>
+          <div class="trust-item"><span class="trust-num">98%</span><span class="trust-label">客户满意度</span></div>
+          <div class="trust-item"><span class="trust-num">1v1</span><span class="trust-label">主理设计师全程跟进</span></div>
+        </div>
+      </div>
+    </div>
+
     <div class="section-divider"></div>
 
     <!-- SERVICES -->
@@ -1654,6 +2044,39 @@
           <div class="step">
             <div class="step-num">05</div>
             <div><b>交付复盘</b><span>交付后持续优化居住体验，让家真正越住越舒服。</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- DESIGN PHILOSOPHY -->
+    <section id="philosophy">
+      <div class="container">
+        <div class="sec-header reveal">
+          <div class="sec-label">Design Philosophy</div>
+          <h2 class="sec-title">设计哲学</h2>
+          <p class="sec-sub">我们相信，好的空间不需要解释。它在细节里生长，在日常中被感受。</p>
+        </div>
+        <div class="philosophy-grid">
+          <div class="phil-item mag-card reveal">
+            <div class="glow-spot"></div>
+            <div class="phil-num">01</div>
+            <h3>留白即呼吸</h3>
+            <p>空间不是被填满的容器，而是留给生活节奏的余白。克制的设计，让居住者与空间产生对话。</p>
+          </div>
+          <div class="phil-item mag-card reveal reveal-delay-1">
+            <div class="glow-spot"></div>
+            <div class="phil-num">02</div>
+            <h3>材质即语言</h3>
+            <p>木纹的温度、石材的力量、金属的克制——每种材质都在讲述空间的故事，构建触感层次与视觉节奏。</p>
+          </div>
+          <div class="phil-item mag-card reveal reveal-delay-2">
+            <div class="glow-spot"></div>
+            <div class="phil-num">03</div>
+            <h3>功能即美学</h3>
+            <p>好的设计不需要解释。动线流畅即优雅，收纳隐形即简约，久住不厌即成功。</p>
           </div>
         </div>
       </div>
@@ -1797,7 +2220,17 @@
 
   <footer class="footer">
     <div class="container">
-      <div>© <span id="year"></span> 江苏添点建设工程有限公司 · 主理设计师与创始人：王夏云</div>
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-mark">添</div>
+          江苏添点建设工程有限公司
+        </div>
+        <div class="footer-slogan">从房子到家，让空间回归宁静与质感</div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-copy">© <span id="year"></span> 江苏添点建设工程有限公司</div>
+      <div class="footer-copy" style="margin-top:2px;">主理设计师与创始人：王夏云</div>
+      <div class="footer-version">v0.3.0 · 更新于 2026-03-24</div>
       <div class="footer-stats">
         <span id="busuanzi_container_site_pv" style="display:none;">总访问量 <span
             id="busuanzi_value_site_pv"></span></span>
@@ -1817,6 +2250,27 @@
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ─── Scroll progress bar ───
+    const progressBar = document.getElementById('scrollProgress');
+    window.addEventListener('scroll', () => {
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      if (h > 0) progressBar.style.width = (window.scrollY / h * 100) + '%';
+    }, { passive: true });
+
+    // ─── Mobile hamburger menu ───
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        menuToggle.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
 
     // ─── Visit source detection ───
     const ref = document.referrer || '';
